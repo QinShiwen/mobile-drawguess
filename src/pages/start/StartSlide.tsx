@@ -28,6 +28,7 @@ const Container = styled.div`
   height: 100vh;
   text-align: center;
   animation-duration: 1s;
+  background: linear-gradient(180deg, #c2d3ff 0%, rgba(194, 211, 255, 0) 100%);
   .center {
     position: relative;
     top: 50%;
@@ -39,6 +40,7 @@ const Container = styled.div`
     font-family: Jua;
     margin: 0px;
   }
+  
   img {
     margin-top: 20px;
   }

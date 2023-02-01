@@ -1,19 +1,27 @@
 
 import styled from "styled-components";
 import { StartSlide } from "./StartSlide";
+import { LoginSlide } from "./LoginSlide";
 import { useState,useEffect } from "react";
 import "animate.css"
 
 export const Start = () => {
   const [isStart, setIsStart] = useState(false);  
+  const [enter,setEnter] = useState(false)
   useEffect(() => {
     setTimeout(() => {
       setIsStart(true);
     }, 2000);
     })
+    
   return (
     <Container>
       <StartSlide isStart = {isStart}/>
+      {
+        (isStart)?(<LoginSlide isStart = {!isStart} />):(<></>)
+      }
+      <></>
+      
     </Container>
   );
 };
