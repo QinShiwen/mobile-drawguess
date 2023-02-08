@@ -2,12 +2,14 @@
 import styled from "styled-components";
 import { StartSlide } from "./StartSlide";
 import { LoginSlide } from "./LoginSlide";
+import {GameHall} from "../gamehall/GameHall"
+
 import { useState,useEffect } from "react";
 import "animate.css"
 
 export const Start = () => {
   const [isStart, setIsStart] = useState(false);  
-  const [enter,setEnter] = useState(false)
+  const [enter,setEnter] = useState(true)
   useEffect(() => {
     setTimeout(() => {
       setIsStart(true);
@@ -18,10 +20,9 @@ export const Start = () => {
     <Container>
       <StartSlide isStart = {isStart}/>
       {
-        (isStart)?(<LoginSlide isStart = {!isStart} />):(<></>)
+        (isStart)?(<LoginSlide enter = {enter} setEnter = {setEnter}/>):(<></>)
       }
-      <></>
-      
+      <GameHall/>
     </Container>
   );
 };

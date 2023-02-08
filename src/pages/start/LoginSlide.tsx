@@ -4,32 +4,43 @@ import { useState, useEffect } from "react";
 import Avatar from "../../assets/imgs/Avatar.png";
 import ButtonIcon from "../../assets/imgs/Button.png";
 import { nanoid } from "nanoid";
-                                                          
+import { HintToast } from "../widgets/HintToast";    
+
 interface StartSlideProps {
-  isStart: boolean;
+  enter: boolean;
+  setEnter:any;
 }
 
-export const LoginSlide = ({ isStart }: StartSlideProps) => {
+export const LoginSlide = ({ enter,setEnter }: StartSlideProps) => {
   const r = Math.round(Math.random() * 255);
   const g = Math.round(Math.random() * 255);
   const b = Math.round(Math.random() * 255);
-  const avatarColor = "rgb(" + r + "," + g + "," + b + ")";
 
   const [userName,setUsername] = useState("")
+  const [avatarColor,setAvatarColor] = useState("rgb(" + r + "," + g + "," + b + ")")
+
   function login(){
-    const userInfo = {
-      name:userName,
-      userId:nanoid()
+    if(userName.length<1){
+      HintToast({icon:"warn",title:"please input name"})
+      return
+    }else if(userName.length>10){
+      HintToast({icon:"warn",title:"name too long"})
+    }else{
+      const userInfo = {
+        name:userName,
+        userId:nanoid()
+      }
+      sessionStorage.setItem("userinfo",JSON.stringify(userInfo))
+      setEnter(!enter)
     }
-    sessionStorage.setItem("userinfo",JSON.stringify(userInfo))
   }
 
   return (
     <Container
       className={
-        isStart
-          ? "animate__animated  animate__fadeOut"
-          : "animate__animated  animate__fadeIn"
+        enter
+          ? "animate__animated  animate__fadeIn"
+          : "animate__animated  animate__slideOutUp"
       }
     >
       <LoginBox>
